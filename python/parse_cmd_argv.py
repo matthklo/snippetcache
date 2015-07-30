@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# For file encoding declaration, please refer to https://www.python.org/dev/peps/pep-0263/
 
 from __future__ import print_function
 
