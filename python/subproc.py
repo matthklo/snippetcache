@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import subprocess
+import os
 
 """
    Usage: subprocess.call([ argv0, argv1, argv2 ,... ], stdin=None, stdout=None, stderr=None, shell=False)
@@ -55,4 +56,18 @@ except subprocess.CalledProcessError as e:
   print("check_output throws, return code = " + str(e.returncode) + ", output = " + e.output)
 
 
+"""
+   All of above commands are implemented by subprocess.Popen()
+   It is also the most flexible way to create and work with sub-processes.
+"""
+
+my_env = os.environ.copy()
+my_env['MY_CUSTOM_ENVVAR'] = 'SOME_VALUE'
+# Demo to run specified target command at given current working dir
+# along with the custom environment setting.
+p = subprocess.Popen(['/path/to/target_cmd', 'args1', 'args2'],
+  cwd='/working/dir/to/run/target_cmd', env=my_env)
+# The above sub process starts as async, to make sure it has done, 
+# the main process should call wait()
+rc = p.wait()
 
